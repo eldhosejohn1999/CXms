@@ -1,0 +1,11 @@
+.canvas-wrapper{
+	background-color: transparent;
+}
+
+.rightCanvas{
+	float: right;
+}
+
+.leftCanvas{
+	float: left;
+}

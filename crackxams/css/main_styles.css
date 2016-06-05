@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3 Jun, 2016, 9:15:57 PM
+    Author     : eldho
+*/
+.mainDiv{
+    padding-left: 80px; 
+    padding-right: 80px; 
+    background-color: white;
+}
+@media screen and (max-width:768px) {
+  .mainDiv{
+    padding-left: 0px; 
+    padding-right: 0px; 
+}  
+}
+
+#profileSettings{
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+#personalDetails div{
+    
+    margin-top: 20px;
+}

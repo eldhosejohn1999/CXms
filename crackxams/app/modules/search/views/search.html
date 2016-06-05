@@ -1,0 +1,234 @@
+<div ng-include="'header.html'"></div>
+<div class="spinnerDiv" ng-show="displaySpinner">
+    <img src="img/spinner.gif" class="ajax-loader"/>
+</div>
+<div class="search-container" >
+
+<div class="row activity-row">
+    <!-- Tabbed section -->
+    <br><br>
+    <tabset class="search search-tabset">
+        <tab heading="Actors" >
+            <!-- Actor tab -->     
+            <div class="search-tabset-background" >
+                <br />
+                  <div class="input-group search-tabset-tab" >
+                 <span class="input-group-addon  border-signin glyphicon glyphicon-search search-tab-glyphicon"  id="actorButton" ng-click="addActor(actorToAdd)"></span>
+                <input type="search" list="actortitle" class="form-control border-signin" placeholder="Search Actors.." ng-model="actorToAdd" onkeydown="if (event.keyCode == 13) document.getElementById('actorButton').click()" id="search-box-width" ng-keyup="autopopulateActor(actorToAdd)"/>
+
+                <datalist id="actortitle">
+                    <option  data-ng-repeat="actors in actorArray" value="{{actors}}"></option>
+                </datalist>
+                </div>
+                <br />
+                <div class="btn-group" role="group">
+                    <button  ng-click="deleteActor(actor.name)" class="btn btn-sm search-clear" ng-repeat="actor in actors"><span class="glyphicon glyphicon-remove"> </span><span class="search-font" >{{actor.name}}</span></button>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Verbs">
+            <!-- Verbs tab -->
+            
+            <div class="search-tabset-bg" ><br>
+            <ul class="list-inline small">
+                <li ng-repeat="v in verbs"><input type="checkbox" ng-model="v.checked" id="search-margin" /><span class="search-font">&nbsp;{{v.name}}</span></li>
+            </ul>
+        </div>
+        </tab>
+        <tab heading="Platforms">
+            <!-- Platforms tab -->
+            
+              <div class="search-tabset-bg"><br>
+            <ul class="list-inline small">
+                <li ng-repeat="p in platforms"><input type="checkbox" ng-model="p.checked" id="search-margin" /><span id="search-margin" class="search-font">&nbsp;{{p.name}}</span> </li>
+            </ul>
+        </div>
+        </tab>
+        <tab heading="Activities">
+
+            <!-- Activity tab -->
+            <div  class="search-tabset-background"  >
+                <br />
+                  <div class="input-group search-tabset-tab" >
+                 <span class="input-group-addon  glyphicon glyphicon-search border-signin search-tab-glyphicon" id="activityButton" ng-click="addActivity(activityToAdd)"></span>
+                <input type="search" list="coursetitle" class="form-control border-signin" placeholder="Search Activities.." ng-model="activityToAdd" onkeydown="if (event.keyCode == 13) document.getElementById('activityButton').click()" id="search-box-width" ng-keyup="autopopulateActivity(activityToAdd)"/>
+                <datalist id="coursetitle">
+                    <option  data-ng-repeat="courses in courseArray" value="{{courses}}"></option>
+                </datalist>
+                </div>
+                <br />
+                <div class="btn-group" role="group">
+                    <button ng-click="deleteActivity(activity.name)" type="button" class="btn btn-sm search-clear " ng-repeat="activity in activities" ><span class="glyphicon glyphicon-remove"> </span><span class="search-font" >{{activity.name}}</span></button>
+                </div>
+            </div>
+        </tab>
+        <tab heading="When">
+            <!-- When tab -->
+            
+            <div class="search-tabset-bg" >
+            <div>
+                <br />
+                <div class="form-group">
+                    <label for="FromDate" class="control-label col-md-1 search-calender-label " >From</label>
+                    <div class="col-md-4">
+                        <p class="input-group">
+                            <input type="text"
+                                   class="form-control border-signin"
+                                   id="FromDate"
+                                   ng-model="when.from"
+                                   datepicker-popup="dd-MMMM-yyyy"
+                                   is-open="Opened1"
+
+                                   ng-click="Opened = true">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default border-signin" ng-click="Opened1=true;$event.stopPropagation();">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+
+                    <label for="ToDate" class="control-label col-md-1 search-calender-label " >To</label>
+                    <div class="col-md-4">
+                        <p class="input-group">
+                            <input type="text"
+                                   class="form-control border-signin"
+                                   id="ToDate"
+                                   ng-model="when.to"
+                                   datepicker-popup="dd-MMMM-yyyy"
+                                   is-open="Opened2"
+                                   ng-click="Opened=true">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default border-signin" ng-click="Opened2=true;$event.stopPropagation();">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+<div class="row search-selected-bg" >
+    <!-- Selected Criteria display -->
+    <br />
+    <div class="col-md-2">
+        <h4>Actors</h4>
+        
+        
+        <ul class="list-unstyled search-selected-font" >
+            <li class="small" ng-repeat="actor in actors"><hr/>{{actor.name}}</li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <h4>Verbs</h4>
+        
+        
+        <ul class="list-unstyled search-selected-font" >
+            <li class="small" ng-repeat="v in verbs | filter:'true'"><hr/>{{v.name}}</li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <h4>Platforms</h4>
+        
+        
+        <ul class="list-unstyled search-selected-font" >
+            <li class="small" ng-repeat="p in platforms | filter:'true'"><hr/>{{p.name}}</li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <h4>Activities</h4>
+        
+        <ul class="list-unstyled search-selected-font" >
+        
+            <li class="small" ng-repeat="activity in activities"><hr/>{{activity.name}}</li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <h4>When</h4>
+       
+        
+        <ul class="list-unstyled search-selected-font" >
+           
+            <li class="small" ><span ng-show="when.from"><hr/></span>{{when.from | date:'MM/dd/yyyy'}}</li>
+            <li ng-show="when.from"><span class="glyphicon glyphicon-circle-arrow-down"></span></li>
+            <li class="small">{{when.to| date:'MM/dd/yyyy'}}</li>
+        </ul>
+        </br>
+        
+        </br></br>
+    </div>
+    
+
+
+</div>
+
+<div class="row search-button" >
+        <button ng-click="search()" class="btn pull-right search-button-background"  >SEARCH </button>
+
+<br><br>
+
+</div>
+
+
+<div ng-show="searchResults" id="table">
+    <hr/>
+     <div class="btn-group pull-right border-signin" ng-hide="message" >
+  <button class="btn pull-right exportbutton" id="excel" >Export</button>
+    
+
+</div>
+<div ng-show="message" class="col-md-offset-3 col-md-5 alert alert-danger text-center" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        No Records Found
+    </div>
+<br><br>
+
+    <div ng-hide="message">
+    <div class="table-responsive" id="detailscontent">
+        <!-- Search Results -->
+        <table class="table table-bordered table-condensed table-hover table-striped" >
+            <thead class="table-head">
+                <tr>
+                    <th>Actors</th>
+                    <th>Verbs</th>
+                    <th>Platforms</th>
+                    <th>Activities</th>
+                    <th>When</th>
+                </tr>
+            </thead>
+            <tbody class="table-body-center">            
+                <tr ng-repeat="search in searchdata | orderBy:'statement.timestamp':reverse">
+                    <td>
+                        <a class="search-table-link" href="#/actor/{{search.statement.actor.account.homePageUrl + '+' + search.statement.actor.account.name}} ">
+                            {{search.statement.actor.name}}
+                        </a>
+                    </td>
+                    <td>{{search.statement.verb.display['en-US']}}</td>
+                    <td>{{search.statement.context.platform}}</td>
+                    <td>
+                        <a class="search-table-link" href="#/activity/{{search.statement.object.id}}">
+                            {{search.statement.object.definition.name['en-US']}}
+                        </a>
+                    </td>
+                    <td><b>{{search.statement.timestamp| date:'dd/MM/yyyy'}}</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="pull-right pagination-padding" >
+            <button type="button" class="btn btn-sm pagination-button" ng-click="prevPage()" ng-disabled="curPage <= 1 || displaySpinner==='true'">
+                <span class="glyphicon glyphicon-hand-left"></span> PREV
+            </button>
+            <span>{{curPage}} of {{numberOfPages}}</span>
+            <button type="button" class="btn btn-sm pagination-button" ng-click="nextPage()" ng-disabled="curPage >= numberOfPages || displaySpinner==='true'">
+                NEXT <span class="glyphicon glyphicon-hand-right"></span>
+            </button>
+        </div>
+    </div>
+    </div>
+</div>
+

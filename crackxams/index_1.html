@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html ng-app="zanMi">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Crackxams- Study Anytime! Anywhere! </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <!-- Styles used  -->
+        <link type="text/css" rel="stylesheet"  href="css/bootstrap.css" />
+        <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css" />
+        <link type="text/css" rel="stylesheet" href="css/components.css"/>
+        <link type="text/css" rel="stylesheet" href="css/responsee.css"/>
+        <link type="text/css" rel="stylesheet" href="css/template-style.css"/>
+        <link type="text/css" rel="stylesheet" href="css/login_normalize.css"/>
+        <link type="text/css" rel="stylesheet" href="css/login_style.css"/>
+        <link type="text/css" rel="stylesheet" href="css/activityIndicator.css" />
+        <link type="text/css" rel="stylesheet" href="css/Login_paneStyle.css"/
+
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'/>
+
+        <!-- Vendor Scripts -->
+        <script type="text/javascript" src="vendor/jquery-2.2.4.js"></script>
+        <script type="text/javascript" src="vendor/jquery-ui.min.js"></script>    
+       
+        <script type="text/javascript" src="vendor/angular.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-route.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-resource.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-idle.min.js"></script>       
+        <script type="text/javascript" src="vendor/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-cookies.min.js"></script>
+
+        <script type="text/javascript" src="vendor/modernizr.js"></script>
+        <script type="text/javascript" src="vendor/responsee.js"></script>
+        <script type="text/javascript" src="vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="vendor/ui-bootstrap-tpls-0.11.2.min.js"></script>
+        <script type="text/javascript" src="vendor/bootstrap-multiselect.js"></script>
+      
+        <!-- Main App script -->
+        <script src="app/main.js"></script>
+        <script src="app/config/config.js"></script>
+      
+        <!-- Services -->
+        <script src="app/services/app.js"></script>
+        <script src="app/services/loginService.js"></script>
+        <script src="app/services/authorizationService.js"></script>
+        <script src="app/services/authInterceptor.js"></script>
+        <script src="app/services/session.js"></script>        
+
+        <!-- Directives -->
+       
+        <!-- Home Module -->
+        <script src="app/modules/home/app.js"></script>
+        <script src="app/modules/home/controllers/homeController.js"></script>
+
+        <!-- Login Module -->
+        <script src="app/modules/login/app.js"></script>
+        <script src="app/modules/login/controllers/signinController.js"></script>
+
+        <!-- Plan Module -->
+        <script src="app/modules/plans/app.js"></script>
+        <script src="app/modules/plans/controllers/planController.js"></script>
+
+        <!-- Courses Module -->
+        <script src="app/modules/courses/app.js"></script>
+        <script src="app/modules/courses/controllers/coursesController.js"></script>
+       
+    </head>
+    <body>     
+        <div id="content">
+            <div ng-include="'app/partials/header.html'"></div> 
+            
+            <div ng-view></div>
+
+            <div ng-include="'app/partials/footer.html'"></div>   
+        </div>       
+    </body>
+</html>

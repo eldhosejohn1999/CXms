@@ -1,0 +1,51 @@
+
+<div id="quizWindow" class="row" ng-show="showResultReport == false">
+
+    <div class="questionPane col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="questionTitle col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               {{question.question}}
+        </div>
+        <div class="optionsPane row"  ng-repeat="option in question.options" ng-init="optionIndex = $index;flag = currentStates[0];"> <!--ng-class="flag==currentStates[1]?'redClass':flag==currentStates[2]?'greenClass':''"-->
+            <input class="col-lg-1 col-md-1 col-sm-2 col-xs-2" type="radio" name="option{{questionIndex}}" id="option{{questionIndex}}{{optionIndex}}" ng-checked="selectedOptionsArray.indexOf('option' + questionIndex + '' + optionIndex) !== -1" ng-click="flag = (option.value == question.answer) ? currentStates[2] : currentStates[1];" value="{{option.value}}"> <div  class="col-lg-3 col-md-3 col-sm-8 col-xs-8">{{option.text}}</div>
+        </div>
+    </div>    
+    <div class="row">
+        
+    <button ng-show="questionIndex > 0" class="btn btn-link"  id="nextButton" ng-click="previousQuestion()"><i class="fa"></i>previous</button>
+    <span><button ng-show="questionIndex < quizData.length - 1"  class="btn btn-success"  id="nextButton" ng-click="nextQuestion()"><i class="fa"></i>next</button></span>     
+    </div>
+   
+</div>
+<div id="quizReportWindow"  ng-show="showResultReport == true">
+    <select ng-model="selection" ng-options="choice for choice in choices"></select>
+
+
+    <h3>{{(correctAnswersCounter / quizData.length) * 100}}% correct</h3>
+    <h3>{{correctAnswersCounter}} out of {{quizData.length}} are correct</h3>
+    <h3>{{wrongAnswersCounter}} out of {{quizData.length}} are wrong</h3>
+
+    <div id="correctAnswersReport"  ng-if="examReport.correctAnswers && showOnlyCorrectAnswers == true">
+        <h2>Correct Answers</h2>
+        <div id="correctAnswersPane" ng-repeat="report in examReport.correctAnswers"  ng-init="questionIndex = $index;">
+            <h2>Question:{{report.question}}</h2>
+            <h3>Answer:{{report.answer}}</h3>
+            <h3>Description:{{report.description}}</h3>
+
+        </div>
+        <hr/>
+    </div>
+    <div id="wrongAnswersReport"  ng-if="examReport.wrongAnswers && showOnlyWrongAnswers == true">
+
+        <h2>Wrong Answers</h2>
+        <div id="wrondAnswersPane" ng-repeat="report in examReport.wrongAnswers"  ng-init="questionIndex = $index;"  ng-if="examReport.wrongAnswers">
+            <h2>Question:{{report.question}}</h2>
+            <h3>Answer:{{report.answer}}</h3>
+            <h3>Description:{{report.description}}</h3>
+            <h3>Answer you gave:{{report.selectedAnswer}}</h3>
+
+        </div>
+    </div>
+</div>
+
+<button  ng-if="showResultReport === false" class="btn btn-success"  id="submitButton" ng-click="calculateResult()"><i class="fa"></i>submit</button>
+
